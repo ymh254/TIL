@@ -71,19 +71,19 @@ db.employees.find({status:"A"})
 //25.select * from employees where status in ('A','B)
 db.employees.find({status: {$in:["A","B"]}})
 //26.status column이 존재하는 document 조회
-db.employees.find()
+db.employees.find({status:{$exists:true}})
 //27.status column이 존재하지 않는 document 조회
-
+db.employees.find({status:{$exists:false}})
 //28.hire_date column이 존재하는 document 조회
-
+db.employees.find({hire_date:{$exists:true}})
 //29.hire_date column이 존재하지 않는 document 조회
-
+db.employees.find({hire_date:{$exists:false}})
 //30.status column이 존재하는 document count 조회
-
+db.employees.count({status:{$exists:true}})
 //31.hire_date column이 존재하는 document count 조회
-
+db.employees.count({hire_date:{$exists:true}})
 //32.select distinct(department) from employees
-
+db.employees.aggregate( [{ $group : {_id: "$department" }}] )
 //33.select * from employees where salary >= 50000
 db.employees.find({salary:{$gte:50000}})
 //34.select * from emploees where salary < 50000
@@ -91,12 +91,17 @@ db.employees.find({salary:{$lt:50000}})
 //35.select * from employees where salary > 45000 and salary <= 60000
 db.employees.find({salary:{$gt:45000} , salary:{lte:60000}})
 //36.update employees set salary = 57000 where number = 1005
-
+db.employees.updateOne({number:1005},{$set:{salary:57000}})
 //37.update employees set last_name = '홍' where number = 1005
-
+db.employees.updateOne({number:1005},{$set:{last_name:'홍'}})
 //38.update employees set salary = salary + 100 where number in (1005,1006)
-
+db.employees.updateMany({number: {$in:[1005,1006]} } , { $inc: { salary: 100 } } )
 //39.delete from employees where status = 'A'
-
 //update() operation uses the $unset operator to remove the fields status and salary
 //number가 1006 인 document의 status , salary  필드값 제거하기
+db.employees.update(
+   { number: 1006 },
+   { $unset: { status: "", salary: 0 } }
+)
+
+db.employees.find().explain()
