@@ -85,24 +85,49 @@ Infrastructural support, plumbing, Byte code injection -> transaction 관리 기
     - JUnit 프레임워크의 테스트 실행방법을 확장할 때 사용함.
     - SpringJUnit4ClassRunner라는 클래스를 지정해주면 JUnit이 테스트를 진행하는 중에 Application Context를 만들고 관리하는 작업을 진행.
     - 각각의 테스트 별로 객체가 생성되더라도 싱글톤의 ApplicationContext를 보장.
+    
   - @ContextConfiguration
+    
     - Bean 설정 파일의 위치를 지정할 때 사용됨.
+    
   - @Autowired
     - 변수, setter메서드, 생성자, 일반메서드 앞 의존관계를 자동 설정할 때 사용.
     - 스프링 컨테이너안에 존재하는 Bean을 자동으로 주입.
     - Type에 따라 의존하는 객체를 주입.
     - <property>, <constructor-arg>태그와 동일한 역할을함.
     - Bean설정 파일을 읽기 위해 굳이 GenericXmlApplicationContext를 사용할 필요없음.
+    
+  - @Resource
+
+    - 의존하는 객제를 자동으로 주입.
+    - @Autowired와는 다르게 생성자에는 적용이 안됨.
+    - 의존하는 객체를 주입할 때 주로 Name을 이용.
+
+  - @Value
+
+    - 단순한 값을 주입할 때 사용되는 어노테이션.
+    - @Value(“Spring”)은 <property .. value=“Spring” /> 와 동일한 역할을 한다.
+
   - @Component
+
     - Component-scan 태그 선언에 의해 특정 패키지 안의 클래스들을 스캔하고 @Component가 있는 클래스에 대하여 Bean으로 등록.
+
+    - < Context:component-scan > 태그
+
+      - @Component를 통해 자동으로 Bean을 등록하고, @Autowired로 의존관계를 주입받는 어노테이션을 클래스에서 선언하여 사용했을 경우에는 해당 클래스가 위치한 특정 패키지를 Scan하기 위한 설정을 XML에 해주어야 한다.
+
+        `<context:component-scan base-package=“myspring.di.annot" />`
 
   - @Qualifier
     - 같은 타입의 Bean이 두 개 이상이 존재하는 경우에 스프링이 어떤 Bean을 주입해야 할지 알 수 없어 컨테이너를 초기화하는 과정에서 예외를 발생시킴
     - @Autowired와 함께 사용하여 정확히 어떤 Bean을 사용할지 지정하여 특정 의존 객체를 주입 할 수 있게 함.
 
   - @Bean
+
     - 새로운 빈 객체를 제공할 때 사용되며 적용된 메서드의 이름을 Bean의 식별값으로 사용함.
+
   - @Configuration
+
     - 스프링 IoC 컨테이너가 해당 클래스를 Bean 정의의 설정으로 사용한다는 것을 나타냄.
 
   (@Configuration이 선언된 클래스들은 스프링 IoC 컨테이너가 관리하는 객체의 인스턴스화, 설정, 초기화 로직을 정의하는 @Bean 어노테이션이 붙은 메서드들로 이루어져 있다.)
