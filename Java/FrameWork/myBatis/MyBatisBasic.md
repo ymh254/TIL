@@ -37,3 +37,7 @@
 - Spring Bean 설정 파일 (bean.xml)
   - SqlSessionFactoryBean을 Bean 등록할 때 DataSource 정보와 MyBatis Config 파일정보, Mapping 파일의 정보를 함께 설정.
   - SqlSesseionTemplate을 Bean으로 등록.
+
+> Mapper 인터페이스
+>
+> : Mapping 파일에 기재된 SQL을 호출하기 위한 인터페이스
