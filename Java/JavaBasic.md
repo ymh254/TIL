@@ -1,29 +1,63 @@
 # Java
 
 - 객체 지향 언어(OOP)
+
+  : 프로그램을 어떻게 설계해야 하는지에 대한 일종의 개념이자 방법론으로, 프로그램을 수많은 객체라는 기본단위로 나누고 이 객체들의 상호작용으로 서술.
+
 - java는 platform(os) 독립적
 
-=> 한 os에서 만들어진 bytecode를 다른 os에서 그대로 실행가능
+  => 한 os에서 만들어진 bytecode를 다른 os에서 그대로 실행가능
 
 - `.Java -compile` ==> `.class (byte code)` (assembly code가 아님. assembly code는 다른 os에서 실행불가)
 
+> Class
 
+- 객체를 만드는 틀, 객체를 만들기위한 설계도
+- 형태: class 클라스명 {}
 
-Jdk (java development kit)=for development
+> 객체
 
--jre를 포함하고 있음
+- 객체는 속성과 기능의 집합 (속성과 기능을 객체 멤버라 함).
+  - 속성(Property) : 멤버변수(member variable), 특성(attribute) + 필드(field), 상태(state)
+  - 기능(function) : 메서드(method), 행위(behavior), 함수(function)
+- 인스턴스를 포함함.
 
-Jre (java runtime environment)=for user
+> 인스턴스
 
+- 생성된 객체, 어떤 클라스에 속하는 각각의 객체
+- 객체를 생성하여 JVM이 관리하는 메모리에 적재됨
+- 어떤 클래스로부터 만들어진 객체를 해당 클라스의 인스턴스라 하고 만들어지는 과정을 인스턴스화라고 함.
+- 클래스가 가지고 있는  method를 모두 상속받는다.
 
+##### JAVA 플랫폼의 3대 요소
 
-J2se - stand alone. java API
+- JDK (java development kit)=for development
 
-​		- java core, i.o, collection, jdbc
+  -JAVA언어로 작성된 소스를 컴파일하고 관리하는데 사용.
 
-J2ee - server based web application
+  -JRE를 포함하고 있음 (JRE+Development Tools).
 
-​		- servlet, jsp, ejb, jpa
+- JRE (java runtime environment)=for user
+
+  -JAVA언어로 작성된 프로그램을 실행
+
+  -JVM을 포함하고 있음 (JVM+Library Classes.
+
+- JVM (java virtual machine)
+
+  -어떤 운영체제에서도 동일한 형태로 실행시켜줌
+
+##### JAVA 플랫폼
+
+- J2se - 일반 자바 프로그램 개발을 위한 개발구조 (stand alone java API).
+
+  ​		- java core, i.o, collection, jdbc
+
+- J2ee - enterprise 환경을 위한 도구. 
+
+  ​	 	- web application server (WAS)
+
+  ​		 - servlet, jsp, ejb, jpa
 
 
 
