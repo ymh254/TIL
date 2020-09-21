@@ -41,3 +41,11 @@
 > Mapper 인터페이스
 >
 > : Mapping 파일에 기재된 SQL을 호출하기 위한 인터페이스
+
+- UserMapper 인터페이스는 개발자가 작성
+- Mapper.xml로 부터 만들어질 객체의 메소드 정의가 가능해서 Parameter와 return형의 type이 정의 가능.
+- NameSpace 속성에는 패키지를 포함한 Mapper 인터페이스 이름 형식
+- 스프링 연동 모듈의 자동스캔기능 사용 가능
+  - `<mybatis:scan/>` 엘리먼트 사용
+  - @MapperScan 어노테이션 사용
+  - 스프링 xml파일을 사용해서 MapperScannerConfigurer등록
