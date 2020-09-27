@@ -32,7 +32,7 @@ Ex)
 
 ```
 function traverse(target, callback) {
-	if(taget,nodeType === node.ELEMNET_NODE){
+	if(taget.nodeType === node.ELEMNET_NODE){
 		if(target.nodeName === 'A')							//A = anchor tag를 뜻함.
 			callback(target);        
 		var c = target.childNodes;
