@@ -4,6 +4,8 @@
 
 : JavaScript를 이용해서 비동기적으로 서버와 브라우저가 데이터(XML, JSON)를 주고받는 방식.
 
+(JavaScript is a single-thread language, also non-blocking, asynchronous, concurrent)
+
 => 브라우저가 가지고 있는 XMLHttpRequest 객체를 이용해서 전체 페이지를 새로 고치지 않고도 페이지의 일부만을 위한 데이터 로드 기법
 
 >  XMLHttpRequest
@@ -68,7 +70,7 @@ document.querySelector('input').addEventListener('click', function(event){
 
 > jQuery - Ajax
 
-: jQuery를 이용해서 Ajax를 이용하게 되면 cross browsing문제를 해결하는 뿐아니라 보다 가편해지는 장점을 갖음
+: jQuery를 이용해서 Ajax를 이용하게 되면 cross browsing문제를 해결하는 뿐아니라 보다 간편해지는 장점을 갖음
 
 - $.ajax API
 
