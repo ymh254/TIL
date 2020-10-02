@@ -57,7 +57,9 @@ first(function() {
 
   ```
   const promise1 = new Promise(function(resolve, reject) { ... } );
-  promise1.then();		//이행
+  promise1.then()		//이행 => 프라미스 값이 반환되어
+  				.then()		//			.then(handler)을 이용해 chaining이 가능.
+  				.then()		//이 후 .then()을 이용한 작업이 끝나면 chaining도 끝남.
   ```
 
 - 리턴값으로 바로 사용 가능
@@ -67,6 +69,8 @@ first(function() {
     return new Promise((resolve, reject) => { ... 	} );
   }
   ```
+
+- async/await를 이용
 
 - REST API의 함수인 `fetch()`함수를 호출해서 리턴받은 Promise객체를 사용하는 경우가 많음.
 
