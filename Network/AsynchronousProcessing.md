@@ -58,7 +58,7 @@ first(function() {
   ```
   const promise1 = new Promise(function(resolve, reject) { ... } );
   promise1.then()		//이행 => 프라미스 값이 반환되어
-  				.then()		//			.then(handler)을 이용해 chaining이 가능.
+  				.then()		//			 .then(handler)을 이용해 chaining이 가능.
   				.then()		//이 후 .then()을 이용한 작업이 끝나면 chaining도 끝남.
   ```
 
@@ -69,8 +69,6 @@ first(function() {
     return new Promise((resolve, reject) => { ... 	} );
   }
   ```
-
-- async/await를 이용
 
 - REST API의 함수인 `fetch()`함수를 호출해서 리턴받은 Promise객체를 사용하는 경우가 많음.
 
@@ -89,5 +87,81 @@ first(function() {
     .then((response) => console.log("response:", response))
     .catch((error) => console.log("error:", error))
   ```
+  > Axios
 
-  
+  : REST API를 요청할 때 Promise로 처리할 수 있게 해주는 HTTP 비동기 통신 라이브러리.
+
+  => GET, PUT, POST, DELETE 등의 메서드로 API 요청
+
+  (패키지 추가하여 사용)
+
+  Ex) <Fake Server 사용 : https://reqres.in/ (Login-successful)>
+
+  ```
+  <body>
+  	<div>
+    	<input type="email" placeholder="email을 입력해주세용" id="email" value="" >
+    </div>
+    <div>
+    	<input type="password" placeholder="비밀번호를 입력해주세용" id="pw" value="">
+    </div>
+          
+    <input type="button" onclick='onLoggin()' value="로그인">
+  </body>
+  <script>
+  function onLoggin(){
+              
+  	const email = document.getElementById("email");
+    const password = document.getElementById('pw')
+    axios({
+    	method:"POST",
+    	url: 'https://reqres.in/api/login',
+    	data:{
+            "email": email.value,
+            "password": password.value
+            }
+    	}).then((res)=>{
+          console.log(res);
+    	}).catch(error=>{
+          console.log(error);
+          throw new Error(error);
+    	});
+    }
+  }
+  <script>
+  ```
+
+- async/await를 이용
+
+  - 함수 선언부에서 function 앞에 async 키워드를 붙히고 Promise를 리턴하는 모든 비동기 함수 호출부 앞에는 await 키워드를 추가함.
+
+    => await 키워드는 async 키워드가 붙어있는 함수 내부에서만 사용할수 있으며 비동기 함수가 리턴하는 Promise로부터 결과값을 추출함.
+
+  - await는 결과값을 얻을 수 있을 때가지 기다려주는 키워드로 동기처리와 동일한 흐름으로 코드를 작성할 수 있게 해줌
+
+    - 가독성이 보다 좋아짐
+    - 동기 / 비동기 구분없이 try/catch로 일관되게 예외처리가 가능
+
+```
+async function fetchAuthorName(postId) {
+  const postResponse = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${postId}`
+  )
+  const post = await postResponse.json()
+  const userId = post.userId
+
+  try {
+    const userResponse = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${userId}`
+    )
+    const user = await userResponse.json()
+    return user.name
+  } catch (err) {
+    console.log("Failed to fetch user:", err)
+    return "Unknown"
+  }
+}
+
+fetchAuthorName(1).then((name) => console.log("name:", name))
+```
+
