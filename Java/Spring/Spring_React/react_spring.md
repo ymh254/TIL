@@ -30,7 +30,8 @@ Database : MySQL
 
 - App.js (file) - root component
 
-  					 - 브라우저에서 실제로 렌더되는 컴포넌트를 포함
+    			 - 브라우저에서 실제로 렌더되는 컴포넌트를 포함
+
      - JSX라는 확장자 파일을 리턴 (자바스크립트 확장 문법)
 
 - state
@@ -110,6 +111,16 @@ Add User button - route를 통해 AddUserComponent.js로 이동
 1. UserListComponent.js에서 .map()을 통해 유저리스트를 하나씩 출력 후 타겟 id값을 editUser()의 파라미터로 넘김.
 2. 받은 파라미터를 userID라는 key값으로 저장 후 EditUserComponent.js에서 API통신을 통해 해당 유저정보를 DB에서 가져옴.
 3. setState로 수정 후 다시 API통신을 통해 DB에 저장
+
+
+
+### Router
+
+React는 기본적으로 SPA (Single Page Application)에서 뷰 렌더링을 유저의 브러우저가 담당하도록 하고, 어플리케이션을 브라우저에 로드 한 다음에 정말 필요한 데이터만 전달받음
+
+=> Router를 통해서 다른 주소에 따라 다른 뷰를 보여줌.
+
+(yarn add react-router-dom 으로 설치)
 
 
 
