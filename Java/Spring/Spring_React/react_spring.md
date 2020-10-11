@@ -122,5 +122,31 @@ React는 기본적으로 SPA (Single Page Application)에서 뷰 렌더링을 �
 
 (yarn add react-router-dom 으로 설치)
 
+(yarn add cross-env --dev => 프로젝트에서 NODE_PATH를 사용하여 절대경로로 파일을 불러오기 위하여 환경 변수를 설정 할 때 운영체제마다 방식이 다르므로 공통정인 방법으로 설정 할 수 있게 해주는 라이브러리)
+
+1. src/index.js 파일에서 BrowserRouter라는 컴포넌트를 /App에 적용
+
+   - BrowserRouter : History API를 사용하여 페이지를 새로고침하지 않고도 주소를 변경하고 현재 주소에 관련된 정보를 props로 쉽게 조회하거나 사용가능케 함
+
+2. App.js에 Route 컴포넌트 사용
+
+   - Route : 어떤 규칙을 가진 경로에 어떤 컴포넌트를 보여 줄지 정의함
+
+   Ex) `<Route path="/" component={home}/>`
+
+   - 다른 컴포넌트를 추가할 시 path가 /인 컴포넌트에 exact라는 props를 true로 설정해줘야 정확하게 일치하는 경로의 컴포넌트를 나타냄
+
+3. a 태그 대신 Link 컴포넌트 사용
+
+   => 페이지를 새로 불러오지 않고 애플리케이션은 그대로 유지한 상태에서 History API를 사용하여 페이지 주소만 변경 (페이지 전환 방지)
+
+   Ex) `<Link to="주소>내용</Link>"`
+
+4. 라우트 파라미터 읽기
+
+   - 라우트의 경로에 특정 값을 넣는 방법
+     - prams
+     - query
+
 
 
