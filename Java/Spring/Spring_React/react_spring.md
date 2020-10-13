@@ -145,8 +145,121 @@ React는 기본적으로 SPA (Single Page Application)에서 뷰 렌더링을 �
 4. 라우트 파라미터 읽기
 
    - 라우트의 경로에 특정 값을 넣는 방법
-     - prams
-     - query
 
+     - prams : path경로 뒤에 `/:foo`형식으로 설정
 
+     - query (라이브러리 필요 => yarn add query-string)
 
+       Ex)
+
+       ```
+       import React from 'react';
+       import queryString from 'query-string';
+       
+       const About = ({location, match}) => {
+           const query = queryString.parse(location.search);
+           console.log(query);
+       
+           return (
+               <div>
+                   <h2>About {match.params.name}</h2>
+               </div>
+           );
+       };
+       
+       export default About;
+       ```
+
+       경로 형태 :  /about/foo?detail=true
+
+- 라우트로 설정한 컴포넌트는 3가지의 props를 전달 받음
+
+  - history : push, replace를 통해 다른 경로로 이동하거나 앞 뒤 페이지로 전환 할 수 있음
+
+    (이동을 할 때 double check를 해줘 무의식적인 이탈 방지)
+
+  - location : 현재 경로에 대한 정보를 지니고 있고 URL 쿼리 정보도 갖음
+
+    - Location.pathname : 현재 브라우저상의 위치를 알려줌
+
+      (어떤 라우트에서 렌더링 하던 동일)
+
+  - match :  어떤 라우트에 매칭이 되었는지에 대한 정보가 있고 params 정보를 갖음
+
+    ​				(설정한 Route와 직접적으로 관계된 값만 보여줌)
+
+    - match.path : 라우트에서 설정한 path 값을 보여줌
+    - match.url : 할당된 id값을 보여줌
+
+  - withRouter 함수는 라우트로 사용된 컴포넌트가 아니어도 match, location, history 객체를 접근 가능케해줌
+
+- Switch 컴포넌트
+
+  : 여러 Route를 감싸서 그중 일치하는 단 하나의 라우트만을 렌더링 시킴 (비교할 라우터를 위에 작성)
+
+  => exact값을 주지 않더라도 하나의 라우트만을 렌더링 시킬 수 있음
+
+- NavLink
+
+  : Link에서 사용하는 경로가 일치하는 경우 특정 스타일 혹은 CSS클라스를 적용 가능
+
+  (NavLink에서 스타일 적용할 때는 activeStyle 값을, CSS 클라스를 적용할 때는 activeClassName값을 props로 넣어 줌)
+
+- 중첩 라우트
+
+<src/pages/Post.js>
+
+```
+import React from 'react';
+
+const Post = ({match}) => {
+    return (
+        <div>
+            포스트 {match.params.id}
+        </div>
+    );
+};
+
+export default Post;
+
+```
+
+<src/pages/Posts>
+
+```
+import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import { Post } from 'pages'; 
+
+const Posts = ({match}) => {
+    return (
+        <div>
+           <h2>Post List</h2> 
+           <ul>
+                <li><Link to={`${match.url}/1`}>Post #1</Link></li>
+                <li><Link to={`${match.url}/2`}>Post #2</Link></li>
+                <li><Link to={`${match.url}/3`}>Post #3</Link></li>
+                <li><Link to={`${match.url}/4`}>Post #4</Link></li>
+           </ul>
+           <Route exact path={match.url} render={()=>(<h3>Please select any post</h3>)}/>
+           <Route path={`${match.url}/:id`} component={Post}/>
+        </div>
+    );
+};
+
+export default Posts;
+
+```
+
+1. Post 컴포넌트에서 params.id를 받아와 렌더링
+
+2. Post import => Posts 컴포넌트의 Link에서 현재 주소 뒤에 id를 붙혀서 이동하도록 설정
+
+   (하단의 Route를 통해 조건에 따라 원하는 결과 출력)
+
+   - 첫번째 라우트에 match.url 설정 => Post id가 주어지지 않았기 때문
+   - 두번째 라우트에선 현재 라우트의 주소에 :id가 붙었을 시에 Post컴포넌트를 보여주도록 설정
+
+3. index.js 수정
+
+4. App.js에서 /posts 경로를 위한 라우트 설정
