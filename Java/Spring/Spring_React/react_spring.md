@@ -1,8 +1,10 @@
-# React
+# Spring_react 연동
+
+### React
 
 > React-Spring 연동
 
-### 구상
+##### 구상
 
 ```
 Back-end : SpringBoot (MyBatis)
@@ -12,7 +14,7 @@ Database : MySQL
 
 
 
-### Basic definition
+##### Basic definition
 
 - Public (folder) - index.html 파일을 포함
 
@@ -88,9 +90,7 @@ Database : MySQL
 
   
 
-
-
-### CRUD 구현
+##### CRUD 구현
 
 <UserListComponent.js>
 
@@ -114,7 +114,7 @@ Add User button - route를 통해 AddUserComponent.js로 이동
 
 
 
-### Router
+##### Router
 
 React는 기본적으로 SPA (Single Page Application)에서 뷰 렌더링을 유저의 브러우저가 담당하도록 하고, 어플리케이션을 브라우저에 로드 한 다음에 정말 필요한 데이터만 전달받음
 
@@ -266,7 +266,7 @@ export default Posts;
 
 
 
-# SpringBoot
+### SpringBoot
 
 1. SpringToolSuite에서 Work space 지정
 
