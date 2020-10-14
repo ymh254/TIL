@@ -278,7 +278,7 @@ export default Posts;
    - Lombok : 자바 클라스(특히 VO, DTO, Entity)를 만들 때 생성하는 getter, setter 및 기타함수들을 어노테이션 하나로 자동으로 생성해주는 역할
    - Spring Boot DevTools : STS에서 작업 시 저장 할 때마다 자동으로 서버를 재부팅해주는 역할
 
-3. application.properties 작성
+3. application.properties 작성 (들여쓰기 x)
 
    Ex)
 
@@ -293,5 +293,14 @@ export default Posts;
    mybatis.mapper-location=classpath*:mapper/*.xml
    ```
 
-   
+4. MySQL에서 Database와 Table 생성
 
+5. Vo, Controller, Configuration, Mapper 작성
+
+   - VO (Value Object) : front-end에서 스프링부트(back-end)로 URL을 통해 작업을 요청 할 시 자바 언어로 해당 객체를 받아주는 역할
+
+   - Controller : URL과 method(get, post, delete 등)로 들어온 요청을 처리
+
+   - Mapper : MyBatis를 이용해 Controller에서 DB작업을 할 때, mapper라는 이름으로 java파일과 xml파일안에서 작업함
+
+     =>xml파일에서 작성한 쿼리문을 java파일에서 작성한 메소드와 연결시켜 DB에서 작업
