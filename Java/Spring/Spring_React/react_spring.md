@@ -263,3 +263,35 @@ export default Posts;
 3. index.js 수정
 
 4. App.js에서 /posts 경로를 위한 라우트 설정
+
+
+
+# SpringBoot
+
+1. SpringToolSuite에서 Work space 지정
+
+2. Dependency 적용
+
+   - Spring Web : 스프링으로 웹프로젝트를 진행
+   - MySQL Driver : DB로 MySQL 사용
+   - MyBatis : Java에서 SQL문을 실행
+   - Lombok : 자바 클라스(특히 VO, DTO, Entity)를 만들 때 생성하는 getter, setter 및 기타함수들을 어노테이션 하나로 자동으로 생성해주는 역할
+   - Spring Boot DevTools : STS에서 작업 시 저장 할 때마다 자동으로 서버를 재부팅해주는 역할
+
+3. application.properties 작성
+
+   Ex)
+
+   ```
+   #MySQL설정
+   spring.datasource.url=jdbc:mysql://localhost:3306test_crud?useUnicode=true&characterEncoding=utf8&verifyServerCertificate=false&useSSL=false&serverTimezone=UTC
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   spring.dataasource.username=root
+   spring.datasource.password=
+   
+   #MyBatis설정
+   mybatis.mapper-location=classpath*:mapper/*.xml
+   ```
+
+   
+
