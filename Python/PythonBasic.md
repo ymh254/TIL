@@ -432,19 +432,32 @@ print(result)					#결과 => 25
 
 - input() :  함수는 한 줄의 문자열을 입력 받는 함수
 
+  (input을 통해 값을 받는 경우는 항상 String으로 받음)
+
 - map() : 리스트의 모든 원소에 각각 특정한 함수를 적용할 때 사용
 
   Ex) - 공백을 기준으로 구분된 데이터를 입력 받을 때
 
   ​		: list(map(int, input().split()))
 
-  ​		//개 수가 많지 않을 경우 =>		a, b, c = map(int, input().split())
+  ​		# 갯수가 많지 않을 경우 =>		a, b, c = map(int, input().split())
 
 - 입력을 최대한 빠르게 받아야 하는 경우
 
   : sys 라이브러리를 import하여 정의되어 있는 sys.stdin.readline() 메서드를 이용
 
   (단, 입력 후 엔터(enter)가 줄 바꿈 기호로 입력되므로 rstrip() 메서드를 함께 사용할 것)
+
+  - sys import를 통해 표준 출력 및 에러 출력 가능
+
+  ```
+  Ex)
+  import sys
+  print("Python", "Java", file=sys.stdout)		#표준 출력
+  print("Python", "Java", file=sys.stderr)		#표준 에러
+  ```
+
+  
 
 ##### 표준 출력 방법
 
@@ -454,7 +467,15 @@ print(result)					#결과 => 25
 
   - print()는 기본적으로 출력 이후에 줄 바꿈을 수행
 
-    (줄 바꿈을 원치 않는 경우 'end' 속성을 사용 => print(a, end=" ") )
+    (줄 바꿈을 원치 않는 경우 'end' 속성을 사용 => print(a, b, end=" ") ) 
+    
+  - 'sep' 속성을 사용하면 원하는 문자열을 문자사이에 삽입가능
+  
+  - ljust(), rjust()를 이용하면 왼쪽, 오른쪽 정렬 가능
+  
+    Ex) print(a.ljust(5), b.rjust(6))
+  
+    ​	  (괄호안에 숫자로 정렬 정도를 정할 수 있음)
 
 > 문자열 format
 
@@ -478,5 +499,7 @@ print("이름은 %s이고 나이는 %s입니다" % ("둘리", 20)
 
 #2
 print("이름은 {name}이고 나이는 {age}입니다" .format(name="둘리", age=20))
+
+print("이름은 {0}이고 나이는 {1}입니다" .format("둘리", 20))
 ```
 
