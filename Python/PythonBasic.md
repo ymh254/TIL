@@ -148,6 +148,7 @@
 - 키와 값을 별도로 뽑아내기 위한 메서드 지원
   - keys() : 키 데이터만 리스트로 사용			ex) key_list = data.keys()
   - values() : 값 데이터만 리스트로 사용	     ex) value_list = data.values()
+  - item() : 키, 값 데이터 모두 리스트로 사용       ex) item_list = data.item()
 
 
 
@@ -501,5 +502,81 @@ print("이름은 %s이고 나이는 %s입니다" % ("둘리", 20)
 print("이름은 {name}이고 나이는 {age}입니다" .format(name="둘리", age=20))
 
 print("이름은 {0}이고 나이는 {1}입니다" .format("둘리", 20))
+```
+
+ 
+
+##### 파일 입출력
+
+: 코드를 통해 txt파일에 입출력
+
+1. 기본
+
+```
+abcd_file = open("abcd.txt", "w", encoding="utf8")
+//w는 파일을 생성해서 내용을 입력함
+//w대신 a를 쓰면 있는 내용에 추가 => abcd_file.write("추가할 내용")
+//w대신 r을 쓰면 파일을 출력 => print(abcd_file.read())
+print("abcd", file=abcd_file)
+abcd_file.close()
+```
+
+2. with
+
+```
+//입력
+with open("abcd.txt", "w", encoding="utf8") as abcd_file:
+    abcd_file.write("abcd")
+//출력
+with open("abcd.txt", "r", encoding="utf8") as abcd_file:
+    print(abcd_file.read())
+```
+
+
+
+### Class
+
+: 똑같은 무엇인가를 계속해서 만들어 낼 수 있고 객체는 클래스로 만든 피조물
+
+##### \__init__ 
+
+: 생성자로써, 객체가 만들어 질 때 자동으로 호출
+
+=> 인자로 self와 원하는 값이 들어가고 객체가 만들어 질 때 인자로 넣은 값과 동일한 수의 값을 부여해야 함
+
+##### 멤버 변수
+
+: 클라스 내에서 정의된 변수
+
+- 외부에서 변수를 추가로 할당 할 수 있음
+
+##### 메소드
+
+: Class 안에 함수로서 정의
+
+Ex)
+
+```
+class Unit:
+    def __init__(self, name, hpm damage):
+        self.name = name
+        self.hp = hp
+        self.damage = damage
+        print("{0} 유닛 생성".format(self.name))
+        print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
+        
+     def attact(self, location):
+         print("{0} : {1} 방향 공격".format(self.name, location))
+        
+wraith1 = Unit("레이스", 80, 5)
+print("유닛이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage))
+wraith1.attact("5시")
+
+wraith2 = Unit("레이스2", 80, 5)
+wraith2.clocking = True
+
+if wraith2.clocking == True:
+    print("{0} 클로킹 상태".format(wraith1.name))
+
 ```
 
