@@ -554,29 +554,81 @@ with open("abcd.txt", "r", encoding="utf8") as abcd_file:
 
 : Class 안에 함수로서 정의
 
+##### 상속
+
+: 다른 클래스의 값을 참조
+
+- 상속받는 클래스를 자식클래스라 함 (<-> 부모클래스)
+- 다중 상속이 가능함 (여러개의 클래스로부터 상속 받을 수 있음)
+
+##### 메소드 오버라이딩(Overriding)
+
+: 부모 클래스에 있는 메서드를 동일한 이름으로 다시 만드는 것
+
 Ex)
 
 ```
 class Unit:
-    def __init__(self, name, hpm damage):
+    def __init__(self, name, hp):
         self.name = name
         self.hp = hp
+
+    def attack(self):
+        print("{0}은/는 공격유닛이 아님".format(self.name))
+
+class AttackUnit(Unit):
+    def __init__(self, name, hp, damage):
+        Unit.__init__(self, name, hp)
+        #super().__init__(name, hp)로도 초기화 가능
+        #단 다중상속시에는 첫 인자만 호출이 되므로 주의!!
         self.damage = damage
-        print("{0} 유닛 생성".format(self.name))
-        print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
-        
-     def attact(self, location):
-         print("{0} : {1} 방향 공격".format(self.name, location))
-        
-wraith1 = Unit("레이스", 80, 5)
-print("유닛이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage))
-wraith1.attact("5시")
 
-wraith2 = Unit("레이스2", 80, 5)
-wraith2.clocking = True
+    def attack(self, location):
+        print("{0} : {1} 방향 공격".format(self.name, location))
 
-if wraith2.clocking == True:
-    print("{0} 클로킹 상태".format(wraith1.name))
+observer = Unit("옵저버", 50)
+observer.clocking = True
+observer.attack()
+
+if observer.clocking == True:
+    print("{0} 클로킹 상태".format(observer.name))
+
+wraith = AttackUnit("레이스", 80, 5)
+print("유닛이름 : {0}, 공격력 : {1}".format(wraith.name, wraith.damage))
+wraith.attack("5시")
+```
+
+
+
+### 모듈
+
+: 함수나 변수 또는 클래스를 모아놓은 파일
+
+(파이썬 프로그램을 다른 파이썬 프로그램에서 불러와 사용 가능)
 
 ```
+#임의의 abcd.py를 불러와 사용
+import abcd
+abcd.a(1)
+
+#파일명을 다르게 적용
+import abcd as a
+a.a(1)
+
+#abcd에 있는 모든 값을 가져올 수 있음
+from abcd import *
+a(1)
+```
+
+
+
+### 패키지
+
+: 모듈들을 모아놓은 집합 (=폴더단위)
+
+- 하나의 파이썬 프로그램에서 패키지안의 모듈을 불러올 수 있음
+
+-  import시 `import 패키지.파일`과 같이 명시하거나, 바로 함수나 클래스 또는 변수를 사용하고 싶다면 `from 패키지.파일 import 원하는 부분`
+
+
 
